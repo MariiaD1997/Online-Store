@@ -23,14 +23,32 @@ export const handler = [
   ),
   //update category
   rest.put(
-    `https://api.escuelajs.co/api/v1/categories/${id}`,
+    `https://api.escuelajs.co/api/v1/categories/:id`,
     async (req, res, ctx) => {
-      const category: Category = await req.json();
-      return res(ctx.json(category));
+      const { id, name } = await req.json();
+      const editedCategory = testData.allCategories.map((item) => {
+        if (item.id === Number(id)) {
+          item.name = name;
+        }
+        return item;
+      });
+      return res(ctx.json(editedCategory));
     }
   ),
 
   //delete category
+  rest.delete(
+    `https://api.escuelajs.co/api/v1/categories/:id`,
+    async (req, res, ctx) => {
+      const { id } = await req.json();
+      const deletedCategory = testData.allCategories.find(
+        (item) => item.id === Number(id)
+      );
+      if (deletedCategory) {
+        return res(ctx.json(true));
+      }
+    }
+  ),
 ];
 
 const categoryServer = setupServer(...handler);
