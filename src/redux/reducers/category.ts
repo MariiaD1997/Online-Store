@@ -14,7 +14,7 @@ export const fetchCategories = createAsyncThunk("fetchCategories", async () => {
 
 export const createCategory = createAsyncThunk(
   "createCategory",
-  async (categoryData: NewCategory) => {
+  async (categoryData: Category) => {
     const result = await axios.post(
       "https://api.escuelajs.co/api/v1/categories/",
       categoryData

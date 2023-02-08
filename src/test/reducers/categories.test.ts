@@ -1,12 +1,16 @@
+import store from "../../redux/store";
 import categoryReducer, {
   fetchCategories,
 } from "../../redux/reducers/category";
-import createStore from "../shared/mockStore";
-
-let store = createStore();
+import createStore from "../shared/testData";
+import categoryServer from "../shared/caregoryServer";
 
 beforeEach(() => {
-  store = createStore();
+  categoryServer.listen();
+});
+
+afterAll(() => {
+  categoryServer.close();
 });
 
 describe("test country reducer", () => {
