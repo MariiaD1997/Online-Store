@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { Product } from "../../types/products";
+import { CreateProduct, Product } from "../../types/products";
 import axios from "axios";
 
 export const fetchProducts = createAsyncThunk("fetchProducts", async () => {
@@ -7,6 +7,28 @@ export const fetchProducts = createAsyncThunk("fetchProducts", async () => {
   const data = result.data;
   return data;
 });
+
+export const fetchSingleProduct = createAsyncThunk(
+  "fetchSingleProduct",
+  async (id: number) => {
+    const result = await axios.get(
+      `https://api.escuelajs.co/api/v1/products/${id}`
+    );
+    const data = result.data;
+    return data;
+  }
+);
+
+export const createProduct = createAsyncThunk(
+  "createProduct",
+  async (productData: CreateProduct) => {
+    const result = await axios.post(
+      "https://api.escuelajs.co/api/v1/products/",
+      productData
+    );
+    return result.data;
+  }
+);
 
 export const updateOne = createAsyncThunk(
   "updateOne",
@@ -18,6 +40,14 @@ export const updateOne = createAsyncThunk(
     return result.data;
   }
 );
+
+export const deleteOne = createAsyncThunk("delete", async (id: number) => {
+  const result = await axios.delete(
+    `https://api.escuelajs.co/api/v1/products/${id}`
+  );
+  const data = result.data;
+  return data;
+});
 
 const initialState: Product[] = [];
 const productsSlicer = createSlice({
@@ -42,6 +72,12 @@ const productsSlicer = createSlice({
         state.sort();
         return action.payload;
       })
+      .addCase(fetchSingleProduct.fulfilled, (state, action) => {
+        return action.payload;
+      })
+      .addCase(createProduct.fulfilled, (state, action) => {
+        return [...state, action.payload];
+      })
       .addCase(updateOne.fulfilled, (state, action) => {
         return state.map((item) => {
           if (item.id === action.payload.id) {
@@ -49,6 +85,9 @@ const productsSlicer = createSlice({
           }
           return item;
         });
+      })
+      .addCase(deleteOne.fulfilled, (state, action) => {
+        return action.payload;
       });
   },
 });

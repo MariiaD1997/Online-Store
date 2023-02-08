@@ -19,8 +19,7 @@ export const createCategory = createAsyncThunk(
       "https://api.escuelajs.co/api/v1/categories/",
       categoryData
     );
-    const data = result.data;
-    return data;
+    return result.data;
   }
 );
 

@@ -6,7 +6,7 @@ import categoryReducer, {
 } from "../../redux/reducers/category";
 import createStore from "../shared/mockStore";
 import categoryServer from "../shared/caregoryServer";
-import { Category, NewCategory } from "../../types/category";
+import { NewCategory } from "../../types/category";
 
 let store = createStore();
 
