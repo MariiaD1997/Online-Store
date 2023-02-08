@@ -25,14 +25,19 @@ export const handler = [
   rest.put(
     `https://api.escuelajs.co/api/v1/categories/:id`,
     async (req, res, ctx) => {
-      const { id, name } = await req.json();
-      const editedCategory = testData.allCategories.map((item) => {
-        if (item.id === Number(id)) {
-          item.name = name;
-        }
-        return item;
-      });
-      return res(ctx.json(editedCategory));
+      const updateCategory: Category = await req.json();
+      const { id } = req.params;
+      const foundCategory = testData.allCategories.find(
+        (item) => item.id === Number(id)
+      );
+      if (foundCategory) {
+        return res(
+          ctx.json({
+            ...foundCategory,
+            ...updateCategory,
+          })
+        );
+      }
     }
   ),
 

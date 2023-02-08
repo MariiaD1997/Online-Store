@@ -14,7 +14,7 @@ export const fetchCategories = createAsyncThunk("fetchCategories", async () => {
 
 export const createCategory = createAsyncThunk(
   "createCategory",
-  async (categoryData: Category) => {
+  async (categoryData: NewCategory) => {
     const result = await axios.post(
       "https://api.escuelajs.co/api/v1/categories/",
       categoryData
@@ -26,13 +26,12 @@ export const createCategory = createAsyncThunk(
 
 export const updateCategory = createAsyncThunk(
   "updateCategory",
-  async ({ id, categoryData }: { id: number; categoryData: NewCategory }) => {
+  async ({ id, name, image }: { id: number; name:string; image:string }) => {
     const result = await axios.put(
       `https://api.escuelajs.co/api/v1/categories/${id}`,
-      categoryData
+      {name, image}
     );
-    const data = result.data;
-    return data;
+    return result.data;
   }
 );
 
