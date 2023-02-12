@@ -45,11 +45,12 @@ describe("test products reducer", () => {
   });
   test("should update edited product", async () => {
     const editedProduct: UpdateProduct = {
-      id: 40,
+      id: 25,
       editedData: {
         title: "Test edit title",
         price: 22222,
-        description: "The Football Is Good For Training",
+        description:
+          "The Nagasaki Lander is the trademarked name of several series of Nagasaki sport bikes, that started with the 1984 ABC800J",
         images: ["https://api.lorem.space/image/fashion?w=640&h=480&r=2693"],
       },
     };
