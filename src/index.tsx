@@ -5,10 +5,11 @@ import { Provider } from "react-redux/es/exports";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import "./index.css";
-import store from "./redux/store";
+import { createStore } from "./redux/store";
 
 const container = document.getElementById("root")!;
 const root = createRoot(container);
+const store = createStore();
 
 root.render(
   <Provider store={store}>

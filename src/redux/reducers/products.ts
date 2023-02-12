@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { CreateProduct, Product } from "../../types/products";
+import { CreateProduct, Product, UpdateProduct } from "../../types/products";
 import axios from "axios";
 
 export const fetchProducts = createAsyncThunk("fetchProducts", async () => {
@@ -32,10 +32,11 @@ export const createProduct = createAsyncThunk(
 
 export const updateOne = createAsyncThunk(
   "updateOne",
-  async ({ id, data }: { id: number; data: Product }) => {
+  async (data: UpdateProduct) => {
+    const { id, editedData } = data;
     const result = await axios.put(
       `https://api.escuelajs.co/api/v1/products/${id}`,
-      data
+      editedData
     );
     return result.data;
   }
@@ -87,7 +88,7 @@ const productsSlicer = createSlice({
         });
       })
       .addCase(deleteOne.fulfilled, (state, action) => {
-        return action.payload;
+        return state;
       });
   },
 });

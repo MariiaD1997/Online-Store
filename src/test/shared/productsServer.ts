@@ -1,6 +1,6 @@
 import { rest } from "msw";
 import { setupServer } from "msw/node";
-import { CreateProduct, Product } from "../../types/products";
+import { CreateProduct, Product, UpdateProduct } from "../../types/products";
 
 import testData from "./testData";
 
@@ -34,7 +34,7 @@ export const handler = [
   rest.put(
     `https://api.escuelajs.co/api/v1/products/:id`,
     async (req, res, ctx) => {
-      const updateProduct: Product = await req.json();
+      const updateProduct: UpdateProduct = await req.json();
       const { id } = req.params;
       const foundProduct = testData.allProducts.find(
         (item) => item.id === Number(id)

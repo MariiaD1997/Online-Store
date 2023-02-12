@@ -4,7 +4,7 @@ import categoryReducer, {
   updateCategory,
   deleteCategory,
 } from "../../redux/reducers/category";
-import createStore from "../shared/mockStore";
+import { createStore } from "../../redux/store";
 import categoryServer from "../shared/caregoryServer";
 import { NewCategory } from "../../types/category";
 

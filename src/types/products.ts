@@ -16,3 +16,8 @@ export interface CreateProduct {
   categoryId: number;
   images: string[];
 }
+
+export interface UpdateProduct {
+  id: number;
+  editedData: Partial<CreateProduct>;
+}

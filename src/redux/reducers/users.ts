@@ -1,7 +1,6 @@
 import { createSlice, PayloadAction, createAsyncThunk } from "@reduxjs/toolkit";
-import { User, UserLoginCredential, UserReducer } from "../../types/user";
+import { User, UserReducer } from "../../types/user";
 import axios from "axios";
-import { UserFormData } from "../../types/form";
 
 export const fetchUsers = createAsyncThunk("fetchProducts", async () => {
   const allUsers = await axios.get("https://api.escuelajs.co/api/v1/users");
