@@ -172,5 +172,8 @@ const allUsers = [
     updatedAt: "2023-02-08T12:30:06.000Z",
   },
 ];
-const testData = { allProducts, allCategories, allUsers }
-export default testData
+const authToken = {
+  access_token: "test_access_token",
+};
+const testData = { allProducts, allCategories, allUsers, authToken };
+export default testData;
