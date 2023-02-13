@@ -1,11 +1,22 @@
 import { createSlice, PayloadAction, createAsyncThunk } from "@reduxjs/toolkit";
-import { User, UserReducer } from "../../types/user";
+import { User, UserLoginCredential, UserReducer } from "../../types/user";
 import axios from "axios";
 
 export const fetchUsers = createAsyncThunk("fetchProducts", async () => {
   const allUsers = await axios.get("https://api.escuelajs.co/api/v1/users");
   return allUsers.data;
 });
+
+export const createNewUser = createAsyncThunk(
+  "createNewUser",
+  async (data: UserLoginCredential) => {
+    const result = await axios.post(
+      "https://api.escuelajs.co/api/v1/users/",
+      data
+    );
+    return result.data;
+  }
+);
 
 export const authenticate = createAsyncThunk(
   "authenticate",
@@ -39,19 +50,21 @@ const userSlicer = createSlice({
       localStorage.clear();
     },
   },
+
   extraReducers: (build) => {
-    build.addCase(
-      fetchUsers.fulfilled,
-      (state, action: PayloadAction<User[]>) => {
+    build
+      .addCase(fetchUsers.fulfilled, (state, action: PayloadAction<User[]>) => {
         state.users = action.payload;
-      }
-    );
-    build.addCase(
-      authenticate.fulfilled,
-      (state, action: PayloadAction<User>) => {
+      })
+      .addCase(authenticate.fulfilled, (state, action: PayloadAction<User>) => {
         state.currentUser = action.payload;
-      }
-    );
+      })
+      .addCase(
+        createNewUser.fulfilled,
+        (state, action: PayloadAction<User[]>) => {
+          [...state.users, action.payload];
+        }
+      );
   },
 });
 

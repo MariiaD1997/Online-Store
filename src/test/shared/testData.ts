@@ -128,8 +128,6 @@ const allUsers = [
     name: "Jhon",
     role: "customer",
     avatar: "https://api.lorem.space/image/face?w=640&h=480&r=2208",
-    creationAt: "2023-02-07T16:52:47.000Z",
-    updatedAt: "2023-02-07T16:52:47.000Z",
   },
   {
     id: 2,
@@ -138,8 +136,6 @@ const allUsers = [
     name: "Maria",
     role: "customer",
     avatar: "https://api.lorem.space/image/face?w=640&h=480&r=5257",
-    creationAt: "2023-02-07T16:52:47.000Z",
-    updatedAt: "2023-02-07T16:52:47.000Z",
   },
   {
     id: 3,
@@ -148,8 +144,6 @@ const allUsers = [
     name: "Admin",
     role: "admin",
     avatar: "https://api.lorem.space/image/face?w=640&h=480&r=3950",
-    creationAt: "2023-02-07T16:52:47.000Z",
-    updatedAt: "2023-02-07T16:52:47.000Z",
   },
   {
     id: 4,
@@ -158,8 +152,6 @@ const allUsers = [
     name: "Manil Pun",
     role: "customer",
     avatar: "https://api.lorem.space/image/face?w=640&h=480&r=867",
-    creationAt: "2023-02-07T17:26:30.000Z",
-    updatedAt: "2023-02-07T17:26:30.000Z",
   },
   {
     id: 5,
@@ -168,8 +160,6 @@ const allUsers = [
     name: "Mani",
     role: "customer",
     avatar: "https://api.lorem.space/image/face?w=640&h=480&r=867",
-    creationAt: "2023-02-07T17:29:40.000Z",
-    updatedAt: "2023-02-08T12:30:06.000Z",
   },
 ];
 const authToken = {

@@ -10,7 +10,7 @@ beforeEach(() => {
   store = createStore();
 });
 
-describe("cart reducer test", () => {
+describe("test cart reducer", () => {
   test("cart initial value", () => {
     expect(store.getState().cartReducer.length).toBe(0);
   });

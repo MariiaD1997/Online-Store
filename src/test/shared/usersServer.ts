@@ -1,5 +1,6 @@
 import { rest } from "msw";
 import { setupServer } from "msw/node";
+import { UserLoginCredential } from "../../types/user";
 
 import testData from "./testData";
 
@@ -10,10 +11,10 @@ export const handler = [
   }),
 
   //add new user
-  rest.post("https://api.escuelajs.co/api/v1/users", async (req, res, ctx) => {
-    const user = await req.json();
-    testData.allUsers.push(user);
-    return res(ctx.json(user));
+  rest.post("https://api.escuelajs.co/api/v1/users/", async (req, res, ctx) => {
+    const user: UserLoginCredential = await req.json();
+    testData.allUsers.push({ ...user, role: "customer", id: 6 });
+    return res(ctx.json({ ...user, role: "customer", id: 6 }));
   }),
 
   //authenticate

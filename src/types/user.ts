@@ -17,4 +17,6 @@ export interface UserReducer {
 export interface UserLoginCredential {
   email: string;
   password: string;
+  name: string;
+  avatar: string
 }
